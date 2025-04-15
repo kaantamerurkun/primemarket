@@ -1,0 +1,200 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="/css/SignUp.css">
+</head>
+
+<body>
+    <div style="display: flex; justify-content: center; padding-top: 20px">
+        <a><img height="150" width="175" src=" /images/PrimeMarket_Logo.png" alt="PrimeMarket Logo" /></a>
+    </div>
+    <br />
+    <h2>Sign Up</h2>
+    <form asp-action="SignUp" asp-controller="User" method="post">
+        <div style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 150px;
+    margin-top: 50px;
+  ">
+            <!-- First div -->
+            <div>
+                <p>Name & Last Name</p>
+                <input style="
+                padding: 8px 16px;
+                border: 1px solid #ddd;
+                border-radius: 20px;
+                width: 250px;
+                outline: none;
+                transition: border-color 0.3s ease;
+              " type="text" id="username" name="username" required placeholder="Enter your name & last name">
+                <br>
+                <br>
+                <p>Email</p>
+                <input style="
+                padding: 8px 16px;
+                border: 1px solid #ddd;
+                border-radius: 20px;
+                width: 250px;
+                outline: none;
+                transition: border-color 0.3s ease;
+              " type="email" id="email" name="email" required placeholder="Enter an email">
+                <br>
+                <br>
+                <p>Password</p>
+                <input style="
+                padding: 8px 16px;
+                border: 1px solid #ddd;
+                border-radius: 20px;
+                width: 250px;
+                outline: none;
+                transition: border-color 0.3s ease;
+              " type="password" id="password" name="password" required placeholder="Enter a password">
+                <br>
+                <br>
+                <div style="display: flex; justify-content: center;">
+                    <button style="
+          cursor: pointer;
+          padding: 8px 16px;
+          border: 1px solid #ddd;
+          border-radius: 20px;
+        " type="submit" id="signup-btn" disabled>
+                        Sign Up
+                    </button>
+                </div>
+                <br />
+                <p>Already have an account?<a asp-action="Login" asp-controller="User"> Login</a></p>
+            </div>
+
+            <!-- Second div -->
+            <div>
+                <p style="text-align: center;">Terms Of Conditions For PrimeMarket</p>
+                <br>
+                <div class="terms-box" style="border-radius:20px; padding:10px; width:120%">
+                    <pre>
+    Terms and Conditions 
+    (That You Won’t Read Anyway)
+    Welcome to our app/website! By 
+    using this service, you 
+    agree to the following terms — not 
+    that you’ll read them, 
+    but hey, legal stuff, right?
+
+    Acceptance of Terms
+    By scrolling, clicking, or 
+    even accidentally 
+    touching your screen, 
+    you agree to everything 
+    written here, even the parts 
+    that sound ridiculous.
+
+    Data Collection
+    We promise to collect only 
+    the data we need... and also 
+    the data 
+    we don't need, just in case. 
+    This includes your 
+    location, favorite snacks, 
+    and how long you stared 
+    at that one product before 
+    eciding not to buy it.
+
+    User Responsibilities
+    You’re responsible for everything. 
+    Yes, everything. 
+    If your cat walks on your 
+    keyboard and accidentally 
+    orders a lifetime supply of 
+    glitter, that’s on you.
+
+    Service Availability
+    We’ll try our best to 
+    keep this thing 
+    running, but if it crashes
+    at 3 AM while 
+    you’re binge-watching cat v
+    ideos, don’t 
+    blame us. The internet is 
+    a mysterious place.
+
+    Liability
+    We’re not liable for anything — 
+    bad haircuts, 
+    failed diets, broken 
+    hearts, or if your WiFi 
+    goes down right when 
+    your favorite show’s plot 
+    twist happens.
+
+    Updates to Terms
+    We can change these 
+    terms whenever 
+    we want. We probably won’t 
+    tell you. It’s 
+    your job to check back 
+    daily like it’s the 
+    morning news.
+
+    Termination
+    If you misbehave (or if 
+    we’re just in a mood),
+    we can kick you out without 
+    warning. But 
+    let’s be real — you weren’t 
+    reading this anyway.
+
+    By continuing to use 
+    this service, 
+    you acknowledge that 
+    you didn’t read 
+    any of this and probably 
+    never will. But 
+    hey, we appreciate you pretending 
+    to care. Enjoy!
+                    
+
+    Disclaimer: No actual 
+    lawyers were 
+    harmed in the making 
+    of this document.
+    </pre>
+                </div>
+                <br>
+                <div style="display: flex;justify-content: center;">
+                    <input type="checkbox" name="name" value=""/></input>
+                    <label style="margin-left:10px">Agree to the Terms Of Condition</label>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const checkbox = document.querySelector('input[type="checkbox"]');
+            const signupButton = document.getElementById("signup-btn");
+            const form = document.querySelector("form");
+
+            checkbox.addEventListener("change", () => {
+                signupButton.disabled = !checkbox.checked;
+            });
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                // Optional: You can validate the form fields here before redirecting
+
+                // Redirect to EmailVerification.cshtml (server-rendered view)
+                window.location.href = '@Url.Action("EmailVerification", "User")';
+            });
+        });
+    </script>
+
+</body>
+</html>
